@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delfin Joseph Feleo - Web Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #4176cc;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #764ba2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #4176cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid black;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: #4176cc;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-card a {
+            display: block;
+            text-decoration: none;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #667eea;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .contact-item:hover {
+            background: #667eea;
+            color: white;
+            border-left-color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .contact-item .icon {
+            font-size: 2rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .contact-item .details {
+            flex: 1;
+        }
+
+        .contact-item .label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .contact-item .value {
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Delfin Joseph Feleo</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#personal-info">Personal Info</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="hand-drawn-human-face-doodle-cool-young-guy-with-stylish-glasses-pencil-drawing-vector.jpg" alt="Delfin Joseph Feleo">
+                </div>
+                <div class="about-text">
+                    <p>My name is Delfin Joseph Feleo, and I'm an IT student with a growing passion for web development. I enjoy building websites that are simple, functional, and user-friendly. I have experience using HTML, CSS, and JavaScript, and I'm continuously improving my skills to keep up with new technologies and practices.</p>
+                    <p style="margin-top: 1rem;">As a progressing developer, I'm open to new learnings and experiences that will help me grow both technically and professionally. I'm eager to apply what I know, contribute to real projects, and keep developing my craft in a professional environment.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="personal-info">
+            <h2>Personal Information</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">👤</div>
+                    <div class="details">
+                        <div class="label">Full Name</div>
+                        <div class="value">Delfin Joseph Feleo</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🎂</div>
+                    <div class="details">
+                        <div class="label">Birthdate</div>
+                        <div class="value">July 18, 2004</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">✨</div>
+                    <div class="details">
+                        <div class="label">Nickname</div>
+                        <div class="value">Deejay</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🗣️</div>
+                    <div class="details">
+                        <div class="label">Languages</div>
+                        <div class="value">English, Filipino</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🌏</div>
+                    <div class="details">
+                        <div class="label">Timezone</div>
+                        <div class="value">GMT+8 (Philippine Time)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Java</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <a href="https://yajeed.vercel.app/" target="_blank">
+                        <img src="yajeed.jpg" alt="E-Commerce Platform Screenshot" class="project-image">
+                    </a>                
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A functional online gadget shopping platform with cart functionality</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="https://suave-seven.vercel.app/" target="_blank">
+                        <img src="suave.jpg" alt="photography booking website" class="project-image">
+                    </a>     
+                    <div class="project-content">
+                        <h3>photography booking website</h3>
+                        <p>A website for booking photography sessions</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="https://lostpaws.vercel.app/" target="_blank">
+                        <img src="lostpaws.jpg" alt="lost and found pet website" class="project-image">
+                    </a>     
+                    <div class="project-content">
+                        <h3>Lost and Found Pet Website</h3>
+                        <p>a lost and found pet website which you can report missing pets and browse for your missing pets</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">🎓</div>
+                    <div class="details">
+                        <div class="label">Degree</div>
+                        <div class="value">Bachelor of Science in Information Technology</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🏫</div>
+                    <div class="details">
+                        <div class="label">University</div>
+                        <div class="value">National University Fairview</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📅</div>
+                    <div class="details">
+                        <div class="label">Expected Graduation</div>
+                        <div class="value">2027</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <div class="details">
+                        <div class="label">Contact Number</div>
+                        <div class="value"><a href="tel:+639062629812">+63 906 262 9812</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📧</div>
+                    <div class="details">
+                        <div class="label">Email</div>
+                        <div class="value"><a href="mailto:deejayfeleo@yahoo.com">deejayfeleo@yahoo.com</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">💬</div>
+                    <div class="details">
+                        <div class="label">Discord</div>
+                        <div class="value">leyo__</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
